@@ -49,33 +49,33 @@ func PostUserService(user User) (id int64, err error) {
 	return
 }
 
-func UpdateUserService(id int64, user User) (int64 error) {
+func UpdateUserService(id int64, user User) (int64, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	defer conn.Close()
 
 	res, err := conn.Exec(`UPDATE users SET username=$2, passowrd=$3, done=$4 WHERE id=$1`, user.ID, user.Username, user.Password, user.Done)
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	return res.RowsAffected()
 }
 
-func DeleteUserService(id int64, user User) (int64 error) {
+func DeleteUserService(id int64, user User) (int64, error) {
 	conn, err := db.OpenConnection()
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	defer conn.Close()
 
 	res, err := conn.Exec(`DELETE FROM users WHERE id=$1`, user.ID)
 	if err != nil {
-		return err
+		return 0, err
 	}
 
 	return res.RowsAffected()
