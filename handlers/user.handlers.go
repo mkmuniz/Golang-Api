@@ -1,4 +1,4 @@
-package handlers
+package userhandlers
 
 import (
 	"encoding/json"
@@ -14,7 +14,7 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 	err := json.NewDecoder(r.Body).Decode(&model)
 	if err != nil {
-		log.Println("Error decoding JSON: %v", err)
+		log.Printf("Error decoding JSON: %v", err)
 		http.Error(w, http.StatusText(http.StatusInternalServerError), http.StatusInternalServerError)
 		return
 	}
@@ -37,4 +37,14 @@ func Create(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Add("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resp)
+}
+
+func List(w http.ResponseWriter, r *http.Request) {
+	users, err := user.GetAllUsersService(0)
+	if err != nil {
+		log.Printf("Error on get all users: %v", err)
+	}
+
+	w.Header().Add("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(users)
 }
