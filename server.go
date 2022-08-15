@@ -19,6 +19,8 @@ func main() {
 	r := chi.NewRouter()
 	r.Post("/", userhandlers.Create)
 	r.Get("/", userhandlers.List)
+	r.Patch("/{id}", userhandlers.Update)
+	r.Delete("/{id}", userhandlers.Delete)
 
 	log.Printf("Server started on port %v", configs.GetServerPort())
 	log.Fatal(http.ListenAndServe(configs.GetServerPort(), r))
