@@ -1,8 +1,0 @@
-[api]
-port=":8000"
-
-[database]
-host="localhost"
-user="user_api"
-pass="1234"
-name="api_go"
