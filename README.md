@@ -1,13 +1,13 @@
 # About
 
-**1 - What is?**
+**1 - What is it?**
 
   My first API made in Golang following this [tutorial](https://www.youtube.com/watch?v=MD7b-iQMC24). Golang is a compiled language created by Google in 2007 to have a easy reading and fast perfomance.
   
 **2 - How to run?**
 
   - Clone the repository
-  - Create `config.toml` file in root directory repository and fill out these informations:
+  - Create `config.toml` file in root directory repository and fill out with these informations:
   
 ```
 [api]
